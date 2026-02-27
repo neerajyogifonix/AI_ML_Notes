@@ -54,20 +54,18 @@ AI technology allows computers and machines to simulate human intelligence and p
 
 **Types of AI (by Capability):**
 
-1. **Narrow AI (Weak AI)**
-   - Designed for specific tasks
-   - Examples: Face recognition, chess playing
-   - Limited to trained domain
+```mermaid
+flowchart TD
+    AI["Artificial Intelligence"] --> NA & GA & SI
 
-2. **General AI (Strong AI)**
-   - Theoretical form
-   - Can perform any intellectual task humans can
-   - Can learn, reason, and adapt across domains
+    NA["Narrow AI\nWeak AI"]
+    GA["General AI\nStrong AI"]
+    SI["Superintelligence"]
 
-3. **Superintelligence**
-   - Speculative future form
-   - Surpasses human intelligence in all domains
-   - Could revolutionize all fields
+    NA --> NA1["Designed for SPECIFIC tasks\n─────────────────\nExamples:\nFace recognition, Chess\n─────────────────\nLimited to trained domain"]
+    GA --> GA1["Performs ANY intellectual task\n─────────────────\nCan learn, reason, adapt\nacross all domains\n─────────────────\nCurrently THEORETICAL"]
+    SI --> SI1["Surpasses human intelligence\nin ALL domains\n─────────────────\nSpeculative future form\nCould revolutionize everything"]
+```
 
 ---
 
@@ -95,10 +93,15 @@ An AI agent is a software program that interacts with its environment, collects 
    - Development, training, and deployment
 
 **How AI Agents Work:**
-```
-1. DETERMINE GOALS → Receive instructions, break into tasks
-2. ACQUIRE INFORMATION → Access data, interact with systems
-3. IMPLEMENT TASKS → Execute methodically, evaluate progress
+
+```mermaid
+flowchart TD
+    Start["Instructions Received"] --> G["STEP 1 — DETERMINE GOALS\nBreak instructions into\nactionable sub-tasks"]
+    G --> I["STEP 2 — ACQUIRE INFORMATION\nAccess data sources\nInteract with systems\nQuery knowledge base"]
+    I --> T["STEP 3 — IMPLEMENT TASKS\nExecute tasks methodically\nMonitor progress"]
+    T --> E{"Goal\nAchieved?"}
+    E -- No --> I
+    E -- Yes --> Done["Task Complete"]
 ```
 
 **Benefits:**
@@ -110,6 +113,18 @@ An AI agent is a software program that interacts with its environment, collects 
 ---
 
 **TYPES OF AI AGENTS:**
+
+```mermaid
+flowchart TD
+    Agents["AI Agent Types"]
+    Agents --> A & B & C & D & E
+
+    A["Simple Reflex Agent\n──────────\nActs on current\nperception only\n──────────\nEx: Thermostat"]
+    B["Model-Based Agent\n──────────\nMaintains internal\nworld model\n──────────\nEx: Self-driving sensors"]
+    C["Goal-Based Agent\n──────────\nWorks to achieve\nspecific goals\n──────────\nEx: GPS Navigation"]
+    D["Utility-Based Agent\n──────────\nMaximizes a\nsuccess measure\n──────────\nEx: Investment AI"]
+    E["Learning Agent\n──────────\nImproves through\nexperience\n──────────\nEx: AlphaGo"]
+```
 
 | Type | Description | Example |
 |------|-------------|---------|
@@ -136,6 +151,22 @@ An AI agent is a software program that interacts with its environment, collects 
 ---
 
 ### 4. CHARACTERISTICS OF AI
+
+```mermaid
+flowchart LR
+    AI["Characteristics\nof AI"]
+
+    AI --> L["Learning\nSupervised · Unsupervised\nReinforcement"]
+    AI --> R["Reasoning\nLogical thinking\nInference engines"]
+    AI --> PS["Problem Solving\nSearch algorithms\nHeuristics"]
+    AI --> P["Perception\nComputer Vision\nNLP"]
+    AI --> LU["Language Understanding\nTranslation · Sentiment\nSiri · Alexa"]
+    AI --> AD["Adaptation\nImproves over time\nNo human intervention"]
+    AI --> AU["Autonomy\nIndependent operation\nSelf-driving cars"]
+    AI --> G["Generalization\nApplies to new tasks\nTransfer learning"]
+    AI --> CR["Creativity\nGANs · Art · Music\nNovel designs"]
+    AI --> CO["Collaboration\nWorks with humans\nDecision support"]
+```
 
 **A. LEARNING**
 - **Supervised Learning** - Trained on labeled data
@@ -278,12 +309,19 @@ An AI agent is a software program that interacts with its environment, collects 
 | **Examples** | Chatbots, chess AI | Email filtering, recommendations | Image classification, autonomous cars |
 
 **Key Relationship:**
-```
-AI (Broad Field)
-  ↓
-Machine Learning (Subset of AI)
-  ↓
-Deep Learning (Subset of ML)
+
+```mermaid
+flowchart TD
+    AI["Artificial Intelligence\n─────────────────\nBroad field for intelligent machines\nHeuristics · Rules · NLP · Robotics\n─────────────────\nExamples: Chatbots, Chess AI"]
+    ML["Machine Learning\n─────────────────\nSubset of AI\nLearns from data\nDecision Trees · SVM · Random Forests\n─────────────────\nExamples: Spam filter, Recommendations"]
+    DL["Deep Learning\n─────────────────\nSubset of ML\nMulti-layer Neural Networks\nCNN · RNN · GPUs/TPUs\n─────────────────\nExamples: Image recognition, Self-driving"]
+
+    AI --> ML
+    ML --> DL
+
+    AI --> N1["Needs: Rules or data\nSpeed: Fast\nInterpretability: High"]
+    ML --> N2["Needs: Large structured data\nSpeed: Moderate\nInterpretability: Moderate"]
+    DL --> N3["Needs: Massive labeled data\nSpeed: Slow training\nInterpretability: Low (black box)"]
 ```
 
 ---
@@ -319,7 +357,33 @@ A framework that views problem-solving as navigating through a space of possible
 3. **State transitions** - Movement rules
 4. **Cost function** - (optional) For optimization
 
+```mermaid
+flowchart TD
+    Init["Initial State\nStarting configuration"] --> Ops["Apply Operators / Actions\nChange state according to rules"]
+    Ops --> NS["New State Generated"]
+    NS --> Check{"Is this the\nGoal State?"}
+    Check -- Yes --> Goal["Goal State Reached\nSolution Found"]
+    Check -- No --> Visited{"Already\nVisited?"}
+    Visited -- Yes --> Prune["Prune — Skip this state\n(avoid loops)"]
+    Prune --> Ops
+    Visited -- No --> Queue["Add to Search Queue"]
+    Queue --> Ops
+```
+
 **④ SEARCH ALGORITHMS:**
+
+```mermaid
+flowchart LR
+    SA["Search\nAlgorithms"]
+    SA --> U["Uninformed\nBlind Search"]
+    SA --> I["Informed\nHeuristic Search"]
+
+    U --> BFS["BFS\nBreadth-First Search\n──────────\nExplore level by level\nFinds SHORTEST path\nMemory intensive"]
+    U --> DFS["DFS\nDepth-First Search\n──────────\nDive deep then backtrack\nLess memory usage\nMay miss short paths"]
+
+    I --> AS["A* Algorithm\n──────────\nUses heuristic f(n)=g(n)+h(n)\nOptimal and complete\nBest for large spaces"]
+    I --> GR["Greedy Search\n──────────\nSelects state closest\nto goal at each step\nFast but not always optimal"]
+```
 
 **A. Uninformed (Blind) Search:**
 
@@ -393,13 +457,23 @@ Measure specific water quantity using jugs without volume markings.
 8. Pour all from jug 1 → jug 2
 
 **Solution Path Example:**
-```
-(0, 0) → Fill jug 1 → (10, 0)
-(10, 0) → Pour to jug 2 → (3, 7)
-(3, 7) → Empty jug 2 → (3, 0)
-(3, 0) → Pour to jug 2 → (0, 3)
-(0, 3) → Fill jug 1 → (10, 3)
-(10, 3) → Pour to jug 2 → (6, 7) ✓ GOAL REACHED
+
+```mermaid
+flowchart TD
+    S0["START\nState: (0, 0)\nBoth jugs empty"]
+    S1["State: (10, 0)\nFill Jug 1"]
+    S2["State: (3, 7)\nPour Jug 1 into Jug 2\n(Jug 2 fills up, 3 left in Jug 1)"]
+    S3["State: (3, 0)\nEmpty Jug 2"]
+    S4["State: (0, 3)\nPour Jug 1 into Jug 2"]
+    S5["State: (10, 3)\nFill Jug 1"]
+    S6["GOAL REACHED\nState: (6, 7)\nPour Jug 1 into Jug 2\n(Jug 2 fills, 6 left in Jug 1)"]
+
+    S0 -- "Fill Jug 1" --> S1
+    S1 -- "Pour Jug1 → Jug2" --> S2
+    S2 -- "Empty Jug 2" --> S3
+    S3 -- "Pour Jug1 → Jug2" --> S4
+    S4 -- "Fill Jug 1" --> S5
+    S5 -- "Pour Jug1 → Jug2" --> S6
 ```
 
 **Search Approaches:**
@@ -459,14 +533,23 @@ Measure specific water quantity using jugs without volume markings.
 4. Use state space search (BFS/DFS/A*)
 
 **Example Solution Path:**
+
+```mermaid
+flowchart TD
+    S0["START\n(3M, 3C) | LEFT | (0M, 0C)\nBoat on LEFT"]
+    S1["(3M, 1C) | ··· | (0M, 2C)\n2 Cannibals cross →"]
+    S2["(3M, 2C) | ··· | (0M, 1C)\n← 1 Cannibal returns"]
+    S3["(3M, 0C) | ··· | (0M, 3C)\n2 Cannibals cross →"]
+    S4["(3M, 1C) | ··· | (0M, 2C)\n← 1 Cannibal returns"]
+    S5["(1M, 1C) | ··· | (2M, 2C)\n2 Missionaries cross →"]
+    S6["(1M, 2C) | ··· | (2M, 1C)\n← 1 Cannibal returns"]
+    S7["(1M, 0C) | ··· | (2M, 3C)\n2 Missionaries cross →"]
+    S8["GOAL REACHED\n(0M, 0C) | RIGHT | (3M, 3C)\nEveryone safely across"]
+
+    S0 --> S1 --> S2 --> S3 --> S4 --> S5 --> S6 --> S7 --> S8
 ```
-(3,3,0,0,0) → 2 cannibals cross → (3,1,0,2,1)
-(3,1,0,2,1) → 1 cannibal returns → (3,2,0,1,0)
-(3,2,0,1,0) → 2 cannibals cross → (3,0,0,3,1)
-(3,0,0,3,1) → 1 cannibal returns → (3,1,0,2,0)
-(3,1,0,2,0) → 2 missionaries cross → (1,1,2,2,1)
-... continue until → (0,0,3,3,1) ✓
-```
+
+> **Constraint:** Cannibals must NEVER outnumber Missionaries on either bank — all states above satisfy this.
 
 **AI Concepts Illustrated:**
 - State-space search
@@ -503,18 +586,20 @@ Measure specific water quantity using jugs without volume markings.
 **Goal:** Obtain the banana
 
 **Solution Steps:**
-```
-Initial State: Monkey on ground, box elsewhere, banana unreachable
-   ↓
-Step 1: Move to box
-   ↓
-Step 2: Push box under banana
-   ↓
-Step 3: Climb onto box
-   ↓
-Step 4: Grab banana
-   ↓
-GOAL ACHIEVED! ✓
+
+```mermaid
+flowchart TD
+    IS["INITIAL STATE\n─────────────────\nMonkey: on ground at Position A\nBox: at Position B\nBanana: hanging at ceiling C\nHas Banana: FALSE"]
+
+    S1["STEP 1 — Move to Box\nMonkey walks from A to B\n─────────────────\nMonkey: at Position B\nBox: at Position B"]
+
+    S2["STEP 2 — Push Box under Banana\nMonkey pushes box from B to C\n─────────────────\nMonkey: at Position C\nBox: at Position C (under banana)"]
+
+    S3["STEP 3 — Climb onto Box\nMonkey climbs the box\n─────────────────\nMonkey: ON BOX at Position C\nNow at banana's height"]
+
+    S4["STEP 4 — Grab Banana\nMonkey reaches and grabs\n─────────────────\nHas Banana: TRUE\nGOAL ACHIEVED"]
+
+    IS --> S1 --> S2 --> S3 --> S4
 ```
 
 **AI Concepts Demonstrated:**
@@ -615,6 +700,21 @@ AI unintentionally avoids or filters certain words/phrases from output.
 
 ### 12. CORE AI APPLICATIONS
 
+```mermaid
+flowchart TD
+    AI["AI Applications"]
+
+    AI --> NLP["NLP\nNatural Language Processing"]
+    AI --> CV["Computer Vision"]
+    AI --> ML["Machine Learning"]
+    AI --> ROB["Robotics"]
+
+    NLP --> NLP1["Machine Translation\nSpam Filtering\nSentiment Analysis\nChatbots · Summarization"]
+    CV --> CV1["Self-driving Cars\nFacial Recognition\nObject Detection\nMedical Imaging"]
+    ML --> ML1["Predictive Analytics\nFraud Detection\nRecommendation Systems\nCustomer Behavior"]
+    ROB --> ROB1["Manufacturing Automation\nSurgical Robots\nWarehouse Navigation\nSpace Exploration"]
+```
+
 **① NATURAL LANGUAGE PROCESSING (NLP)**
 - Machine translation
 - Spam filtering
@@ -646,6 +746,21 @@ AI unintentionally avoids or filters certain words/phrases from output.
 ---
 
 ### 13. INDUSTRY-SPECIFIC APPLICATIONS
+
+```mermaid
+flowchart TD
+    AI["AI in Industries"]
+
+    AI --> BI["Business Intelligence\nData · Patterns · Decisions"]
+    AI --> HC["Healthcare\nDiagnosis · Imaging · Drug Discovery"]
+    AI --> ED["Education\nPersonalized · Adaptive · Automated"]
+    AI --> FIN["Finance\nFraud · Trading · Risk"]
+    AI --> MFG["Manufacturing\nQuality · Maintenance · Efficiency"]
+    AI --> RET["Retail\nRecommendations · Inventory · Behaviour"]
+    AI --> TRP["Transportation\nSelf-driving · Traffic · Routes"]
+    AI --> ENE["Energy\nSmart Grid · Demand · Efficiency"]
+    AI --> GOV["Government\nSafety · Crime · Citizen Services"]
+```
 
 **A. BUSINESS INTELLIGENCE**
 - **Data Collection** - Structured & unstructured data
@@ -910,41 +1025,49 @@ Store evolving case information:
 
 ### **MYCIN WORKFLOW DIAGRAM**
 
+```mermaid
+flowchart TD
+    PD["Patient Data Input\n─────────────────\nSymptoms reported\nLab results entered\nPatient history logged"]
+
+    BC["Backward Chaining\n─────────────────\nGoal: Find therapy\nWork backwards from goal\nto required data"]
+
+    RC["Rule Consultation\n─────────────────\nIF conditions THEN conclusions\nCertainty Factor CF applied\nRules fired based on data"]
+
+    OI["Organism Identification\n─────────────────\nCandidate organisms listed\nCF scores assigned\nHighest CF = most likely"]
+
+    TR["Treatment Recommendation\n─────────────────\nAntibiotic therapy selected\nDosage calculated\nDrug interactions checked"]
+
+    EX["Explanation Available\n─────────────────\nHOW: How was this concluded?\nWHY: Why was this asked?\nFull reasoning trace shown"]
+
+    PD --> BC --> RC --> OI --> TR --> EX
+
+    RC -- "Need more data?" --> Q["Prompt Physician\nfor Additional Info"]
+    Q --> RC
 ```
-┌─────────────────────────┐
-│   Patient Data Input    │
-│  (Symptoms, Lab Results)│
-└───────────┬─────────────┘
-            │
-            ▼
-┌─────────────────────────┐
-│  Backward Chaining      │
-│  (Goal-driven Reasoning)│
-└───────────┬─────────────┘
-            │
-            ▼
-┌─────────────────────────┐
-│  Rule Consultation      │
-│  (with Certainty Factors)│
-└───────────┬─────────────┘
-            │
-            ▼
-┌─────────────────────────┐
-│  Organism Identification│
-│  (with Confidence Levels)│
-└───────────┬─────────────┘
-            │
-            ▼
-┌─────────────────────────┐
-│ Treatment Recommendation│
-│  (Antibiotic Therapy)   │
-└───────────┬─────────────┘
-            │
-            ▼
-┌─────────────────────────┐
-│  Explanation Available  │
-│     (HOW/WHY)          │
-└─────────────────────────┘
+
+```mermaid
+flowchart LR
+    subgraph SS["CONSULTATION SYSTEM"]
+        direction TB
+        SD["Static Data\nParameters · Rule Base"]
+        DD["Dynamic Data\nPatient context\nSession rules"]
+        CS["Control Structure\nBackward Chaining\nGoal-driven"]
+    end
+
+    subgraph ES["EXPLANATION SYSTEM"]
+        direction TB
+        HOW["HOW questions\nTrace reasoning chain"]
+        WHY["WHY questions\nJustify question asked"]
+    end
+
+    subgraph RAS["RULE ACQUISITION SYSTEM"]
+        direction TB
+        RE["Enter / Edit / Delete Rules"]
+        AU["Auto-update LOOKAHEAD\nand UPDATED-BY lists"]
+    end
+
+    SS --> ES
+    SS --> RAS
 ```
 
 ---
